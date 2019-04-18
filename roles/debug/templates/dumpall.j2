@@ -1,0 +1,20 @@
+{
+	"vars":{
+{% for key, var in vars.iteritems() %}
+{% if key != "hostvars" %}
+		"{{ key }}":{{ var |  to_nice_json }}{% if not loop.last %}{{','}}{% endif %}
+{% endif %}
+{% endfor %}
+	},
+	"environment": {{ environment | to_nice_json }},
+
+	"group_names": {{ group_names | to_nice_json }},
+
+	"groups":{{ groups | to_nice_json }},
+
+	"hostvars":{
+{% for host in groups['all'] %}
+	"{{ host }}":{{ hostvars[host]|to_nice_json }}{% if not loop.last %}{{','}}{% endif %}
+{% endfor %}
+	}
+}

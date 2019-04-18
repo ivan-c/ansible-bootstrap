@@ -1,2 +1,5 @@
 # Run this playbook corresponding with `local` group of hosts
 ---
+- hosts: all
+  roles:
+    - debug
