@@ -7,3 +7,7 @@
 - hosts: docker_hosts
   roles:
     - geerlingguy.docker
+  pre_tasks:
+    - name: Install role dependencies
+      command:
+        ansible-galaxy install --role-file requirements.yaml
