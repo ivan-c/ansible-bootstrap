@@ -1,13 +1,24 @@
 # Run this playbook corresponding with `local` group of hosts
 ---
-- hosts: all
-  roles:
-    - debug
-  pre_tasks:
-    - name: Install role dependencies
-      command:
-        ansible-galaxy install --role-file requirements.yaml
+# - hosts: all
+  # roles:
+    # - debug
+    # - name: Install role dependencies
+      # command:
+        # ansible-galaxy install --role-file requirements.yaml
 
 - hosts: docker_hosts
   roles:
     - geerlingguy.docker
+  pre_tasks:
+    - name: Install apt_key prerequisites
+      package:
+        name: gnupg
+        state: present
+
+    - debug:
+        msg: "System {{ inventory_hostname }} has docker_apt_repository {{ docker_apt_repository }}"
+    - name: Display all variables/facts known for a host
+      debug:
+        var: hostvars[inventory_hostname]
+        verbosity: 4
