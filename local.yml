@@ -3,3 +3,7 @@
 - hosts: all
   roles:
     - debug
+
+- hosts: docker_hosts
+  roles:
+    - geerlingguy.docker
