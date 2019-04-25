@@ -3,10 +3,10 @@
 - hosts: all
   roles:
     - debug
-
-- name: Install role dependencies
-  command:
-    ansible-galaxy install --role-file requirements.yaml
+  pre_tasks:
+    - name: Install role dependencies
+      command:
+        ansible-galaxy install --role-file requirements.yaml
 
 - hosts: docker_hosts
   roles:
