@@ -22,10 +22,10 @@
         state: present
     - set_fact: ansible_distribution_release='{{ "buster" if ansible_facts["distribution_major_version"] == "buster/sid" else ansible_facts["distribution_release"] }}'
       # when: ansible_distribution == 'CentOS'
-    - debug:
-        msg: "System {{ inventory_hostname }} has docker_apt_repository {{ docker_apt_repository }}"
-    - debug:
-        msg: "System {{ inventory_hostname }} has ansible_distribution_release {{ ansible_distribution_release }}"
+    # - debug:
+        # msg: "System {{ inventory_hostname }} has docker_apt_repository {{ docker_apt_repository }}"
+    # - debug:
+        # msg: "System {{ inventory_hostname }} has ansible_distribution_release {{ ansible_distribution_release }}"
     - name: Display all variables/facts known for a host
       debug:
         var: hostvars[inventory_hostname]
