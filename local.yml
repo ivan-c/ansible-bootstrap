@@ -13,14 +13,14 @@
 
   # workaround for debian buster (testing) bug
   # https://github.com/ansible/ansible/issues/19874#issuecomment-436542563
-  # vars:
-    # ansible_distribution_release: '{{ "buster" if ansible_facts["distribution_major_version"] == "buster/sid" else ansible_facts["distribution_release"] }}'
+  vars:
+    ansible_distribution_release: '{{ "buster" if ansible_facts["distribution_major_version"] == "buster/sid" else ansible_facts["distribution_release"] }}'
   pre_tasks:
     - name: Install apt_key prerequisites
       package:
         name: gnupg
         state: present
-    - set_fact: ansible_distribution_release='{{ "buster" if ansible_facts["distribution_major_version"] == "buster/sid" else ansible_facts["distribution_release"] }}'
+    # - set_fact: ansible_distribution_release='{{ "buster" if ansible_facts["distribution_major_version"] == "buster/sid" else ansible_facts["distribution_release"] }}'
       # when: ansible_distribution == 'CentOS'
     # - debug:
         # msg: "System {{ inventory_hostname }} has docker_apt_repository {{ docker_apt_repository }}"
