@@ -10,6 +10,11 @@
 - hosts: docker_hosts
   roles:
     - geerlingguy.docker
+
+  # workaround for debian buster (testing) bug
+  # https://github.com/ansible/ansible/issues/19874#issuecomment-436542563
+  vars:
+    ansible_distribution_release: '{{ "buster" if ansible_facts["distribution_major_version"] == "buster/sid" else ansible_facts["distribution_release"] }}'
   pre_tasks:
     - name: Install apt_key prerequisites
       package:
@@ -18,6 +23,8 @@
 
     - debug:
         msg: "System {{ inventory_hostname }} has docker_apt_repository {{ docker_apt_repository }}"
+    - debug:
+        msg: "System {{ inventory_hostname }} has ansible_distribution_release {{ ansible_distribution_release }}"
     - name: Display all variables/facts known for a host
       debug:
         var: hostvars[inventory_hostname]
