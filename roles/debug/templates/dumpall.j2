@@ -1,6 +1,6 @@
 {
 	"vars":{
-{% for key, var in vars.iteritems() %}
+{% for key, var in vars.items() %}
 {% if key != "hostvars" %}
 		"{{ key }}":{{ var |  to_nice_json }}{% if not loop.last %}{{','}}{% endif %}
 {% endif %}
