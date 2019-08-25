@@ -17,3 +17,8 @@
       package:
         name: gnupg
         state: present
+
+
+- hosts: laptops
+  roles:
+    - laptop
