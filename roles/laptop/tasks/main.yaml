@@ -1,0 +1,14 @@
+---
+- name: Install required packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - aptitude
+      - tasksel
+
+- name: Install laptop-related packages
+  command: tasksel install laptop
+
+- name: Install KDE
+  command: aptitude install --assume-yes ~t^desktop$ ~t^kde-desktop$
