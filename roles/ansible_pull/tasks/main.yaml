@@ -1,0 +1,6 @@
+---
+
+- name: Install ansible-pull wrapper script
+  copy:
+    src: files/ansible_pull_wrapper.sh
+    dest: /usr/local/bin
