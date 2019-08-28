@@ -3,6 +3,8 @@
 - hosts: all
   roles:
     - base
+    - ansible_pull
+  tags: boot
 
 - hosts: docker_hosts
   roles:
