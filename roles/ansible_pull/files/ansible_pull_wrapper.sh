@@ -37,6 +37,11 @@ while :; do
             checkout_dir=$2
             shift
             ;;
+        -d*)
+            # Delete "-d" and assign the remainder
+            checkout_dir=${1#*-d}
+            ;;
+
         --directory=?*)
             # Delete everything up to "=" and assign the remainder
             checkout_dir=${1#*=}
@@ -47,6 +52,9 @@ while :; do
             test "$2" || die "ERROR: $1 requires a non-empty option argument."
             repo_url=$2
             shift
+            ;;
+        -U*)
+            repo_url=${1#*-U}
             ;;
         --url=?*)
             repo_url=${1#*=} 
