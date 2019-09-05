@@ -67,6 +67,9 @@ while :; do
     shift
 done
 
+default_checkout_dir=/tmp/ansible
+checkout_dir="${checkout_dir:-$default_checkout_dir}"
+
 PATH="${PATH}:${HOME}/.local/bin"
 
 
