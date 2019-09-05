@@ -59,11 +59,10 @@ while :; do
         --url=?*)
             repo_url=${1#*=} 
             ;;
-
-
-        # Default case: No more options, so break out of the loop.
-        *)
+        "")
+            # no more options
             break
+            ;;
     esac
     shift
 done
