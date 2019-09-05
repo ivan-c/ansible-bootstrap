@@ -32,24 +32,23 @@ while :; do
             exit
             ;;
         # handle checkout dir option
-        -d|--directory)       # Takes an option argument; ensure it has been specified.
-            test "$2" || die 'ERROR: "--directory" requires a non-empty option argument.'
+        -d|--directory)
+            test "$2" || die "ERROR: $1 requires a non-empty option argument."
             checkout_dir=$2
             shift
             ;;
         --directory=?*)
-            checkout_dir=${1#*=} # Delete everything up to "=" and assign the remainder.
+            # Delete everything up to "=" and assign the remainder
+            checkout_dir=${1#*=}
             ;;
 
         # handle repo URL option
-        # Takes an option argument; ensure it has been specified.
-        -U|--url)       
-            test "$2" || die 'ERROR: "--url" requires a non-empty option argument.'
+        -U|--url)
+            test "$2" || die "ERROR: $1 requires a non-empty option argument."
             repo_url=$2
             shift
             ;;
         --url=?*)
-            # Delete everything up to "=" and assign the remainder.
             repo_url=${1#*=} 
             ;;
 
