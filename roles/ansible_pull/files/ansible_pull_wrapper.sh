@@ -73,6 +73,10 @@ done
 default_checkout_dir=/tmp/ansible
 checkout_dir="${checkout_dir:-$default_checkout_dir}"
 
+default_repo_url='https://github.com/ivan-c/ansible-bootstrap'
+repo_url="${repo_url:-$default_repo_url}"
+
+
 PATH="${PATH}:${HOME}/.local/bin"
 
 
@@ -87,4 +91,8 @@ export ANSIBLE_INVENTORY="${ANSIBLE_INVENTORY:-hosts.ini}"
 # the below doesn't work
 #export ANSIBLE_PYTHON_INTERPRETER=python3
 
-ansible-pull $ARGS --directory "$checkout_dir" --extra-vars ansible_python_interpreter=python3
+ansible-pull \
+    $ARGS \
+    --directory "$checkout_dir" \
+    --url $repo_url \
+    --extra-vars ansible_python_interpreter=python3
