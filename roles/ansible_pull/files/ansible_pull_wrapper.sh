@@ -76,11 +76,14 @@ checkout_dir="${checkout_dir:-$default_checkout_dir}"
 PATH="${PATH}:${HOME}/.local/bin"
 
 
-
 if [ ! -d "$checkout_dir" ]; then
     git clone "$repo_url" "$checkout_dir"
 fi
 
 # assume directory to checkout repository to contains requirements.yaml or requirements.yml
 ansible-galaxy install --role-file="$checkout_dir"/requirements.yaml
+
+export ANSIBLE_INVENTORY="${ANSIBLE_INVENTORY:-hosts.ini}"
+export ANSIBLE_PYTHON_INTERPRETER=python3
+
 ansible-pull $ARGS
