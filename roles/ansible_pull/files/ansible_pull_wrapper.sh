@@ -27,10 +27,7 @@ ARGS=$@
 
 while :; do
     case $1 in
-        -h|-\?|--help)
-            usage
-            exit
-            ;;
+
         # handle checkout dir option
         -d|--directory)
             test "$2" || die "ERROR: $1 requires a non-empty option argument."
@@ -58,6 +55,12 @@ while :; do
             ;;
         --url=?*)
             repo_url=${1#*=} 
+            ;;
+
+
+        -h|-\?|--help)
+            usage
+            exit
             ;;
         "")
             # no more options
