@@ -23,6 +23,7 @@ die(){
 }
 
 
+# copy arguments; option parsing is destructive
 ARGS=$@
 
 while :; do
