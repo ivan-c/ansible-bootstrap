@@ -4,3 +4,17 @@
   copy:
     src: files/ansible_pull_wrapper.sh
     dest: /usr/local/bin
+
+- name: Install systemd files
+  copy:
+    src: files/{{ item }}
+    dest: /etc/systemd/system/
+  with_items:
+    - ansible_pull.service
+    - ansible_pull.timer
+
+- name: Start ansible-pull timed service
+  systemd:
+    name: ansible_pull.timer
+    state: started
+    enabled: yes
