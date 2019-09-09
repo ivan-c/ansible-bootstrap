@@ -77,9 +77,15 @@ checkout_dir="${checkout_dir:-$default_checkout_dir}"
 default_repo_url='https://github.com/ivan-c/ansible-bootstrap'
 repo_url="${repo_url:-$default_repo_url}"
 
-
+# add user-installed pip paths
 PATH="${PATH}:${HOME}/.local/bin"
 
+# override implied default from debian-installer
+if [ "$USER" = root ] && [ "$HOME" = / ]; then
+    PATH="${PATH}:/root/.local/bin"
+    # todo use `find`
+    export PYTHONPATH=/root/.local/lib/python3.7/site-packages
+fi
 
 if [ ! -d "$checkout_dir" ]; then
     git clone "$repo_url" "$checkout_dir"
