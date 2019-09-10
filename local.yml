@@ -6,6 +6,14 @@
     - ansible_pull
   tags: boot
 
+- hosts: headless_hosts
+  tasks:
+    - include_role:
+        name: ivan-c.sumologic
+      # skip if ansible-secrets repo absent
+      when: lookup('file','/etc/opt/ansible-secrets/README.md', errors='ignore')
+  tags: boot
+
 - hosts: docker_hosts
   roles:
     - geerlingguy.docker

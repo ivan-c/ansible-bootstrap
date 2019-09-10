@@ -1,0 +1,2 @@
+---
+sumologic_token: "{{ lookup('file', '/etc/opt/ansible-secrets/Services/sumologic') }}"
