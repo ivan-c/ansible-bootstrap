@@ -6,6 +6,11 @@
     - ansible_pull
   tags: boot
 
+- hosts: headless_hosts
+  roles:
+    - jmcvetta.loggly
+  tags: boot
+
 - hosts: docker_hosts
   roles:
     - geerlingguy.docker
