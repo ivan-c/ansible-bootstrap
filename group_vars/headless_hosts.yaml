@@ -1,2 +1,3 @@
 ---
 loggly_token: "{{ lookup('file', '/tmp/loggly_token')  }}"
+loggly_tls: true
