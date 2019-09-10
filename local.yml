@@ -6,10 +6,17 @@
     - ansible_pull
   tags: boot
 
+- hosts: headless_hosts
+  tasks:
+    # skip if ansible-secrets repo absent
+    - include_role:
+        name: jmcvetta.loggly
+      when: lookup('file','/etc/opt/ansible-secrets/README.md', errors='ignore')
+  tags: boot
+
 - hosts: docker_hosts
   roles:
     - geerlingguy.docker
-
   # manually set distribution_major_version
   # workaround for debian buster (testing) bug
   # https://github.com/ansible/ansible/issues/19874#issuecomment-436542563
@@ -23,7 +30,6 @@
       package:
         name: gnupg
         state: present
-
 
 - hosts: laptops
   roles:

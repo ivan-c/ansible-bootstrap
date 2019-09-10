@@ -1,0 +1,3 @@
+---
+loggly_token: "{{ lookup('file', '/etc/opt/ansible-secrets/Services/loggly') }}"
+loggly_tls: true
