@@ -18,3 +18,4 @@
     name: ansible_pull.timer
     state: started
     enabled: yes
+  # todo: systemctl daemon-reload on notify
