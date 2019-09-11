@@ -102,4 +102,5 @@ ansible-pull \
     $ARGS \
     --directory "$checkout_dir" \
     --url $repo_url \
+    --limit "$(hostname)" \
     --extra-vars ansible_python_interpreter=python3
