@@ -103,5 +103,4 @@ ansible-pull \
     --directory "$checkout_dir" \
     --url $repo_url \
     --limit "$(hostname)" \
-    --only-if-changed \
     --extra-vars ansible_python_interpreter=python3
