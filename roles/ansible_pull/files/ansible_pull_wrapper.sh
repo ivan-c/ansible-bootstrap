@@ -95,6 +95,7 @@ fi
 ansible-galaxy install --role-file="$checkout_dir"/requirements.yaml
 
 export ANSIBLE_INVENTORY="${ANSIBLE_INVENTORY:-hosts.ini}"
+export ANSIBLE_CONFIG="$checkout_dir"/ansible.cfg
 # the below doesn't work
 #export ANSIBLE_PYTHON_INTERPRETER=python3
 
