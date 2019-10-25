@@ -1,5 +1,9 @@
 # Run this playbook corresponding with `local` group of hosts
 ---
+- hosts: all
+  roles:
+    - base
+
 - hosts: docker_hosts
   roles:
     - geerlingguy.docker

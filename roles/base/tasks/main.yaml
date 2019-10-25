@@ -1,0 +1,10 @@
+---
+- name: Add my Github keys to root authorized_keys
+  authorized_key:
+    user: root
+    state: present
+    key: https://github.com/ivan-c.keys
+
+- name: Install tool to detect local caching proxies
+  apt:
+    name: squid-deb-proxy-client
