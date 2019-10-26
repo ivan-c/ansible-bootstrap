@@ -4,6 +4,9 @@ After=network.target
 
 [Service]
 Environment=HOME=/root
+Environment=ANSIBLE_CALLBACK_PLUGINS=plugins/callback
+Environment=ANSIBLE_CALLBACK_WHITELIST=json_oneline
+Environment=ANSIBLE_STDOUT_CALLBACK=json_oneline
 ExecStart=/usr/bin/ansible_pull_wrapper.sh
 Type=oneshot
 
