@@ -43,6 +43,10 @@
         name: docker
         state: restarted
 
+- hosts: htpc
+  roles:
+    - ivan-c.dell-u2713hm
+
 - hosts: laptops
   roles:
     - laptop

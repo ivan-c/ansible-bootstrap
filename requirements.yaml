@@ -5,3 +5,6 @@
 
 - name: ivan-c.sumologic
   src: https://github.com/ivan-c/ansible-role-sumologic
+
+- name: ivan-c.dell-u2713hm
+  src: https://github.com/ivan-c/ansible-role-dell-u2713hm
