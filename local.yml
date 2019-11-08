@@ -47,6 +47,7 @@
   roles:
     - ivan-c.dell-u2713hm
     - hp_firmware
+    - workstation
 
 - hosts: laptops
   roles:
