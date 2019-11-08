@@ -46,6 +46,7 @@
 - hosts: htpc
   roles:
     - ivan-c.dell-u2713hm
+    - hp_firmware
 
 - hosts: laptops
   roles:

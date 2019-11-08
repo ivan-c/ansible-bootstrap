@@ -1,0 +1,13 @@
+---
+- name: Add non-free sources
+  command: apt-add-repository non-free
+  notify:
+    - Update package lists
+
+- name: Install required firmware
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - firmware-atheros
+      - firmware-realtek

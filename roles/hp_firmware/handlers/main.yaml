@@ -1,0 +1,3 @@
+- name: Update package lists
+  apt:
+    update_cache: yes
