@@ -48,6 +48,7 @@
     - ivan-c.dell-u2713hm
     - hp_firmware
     - workstation
+    - stream_client
 
 - hosts: laptops
   roles:
