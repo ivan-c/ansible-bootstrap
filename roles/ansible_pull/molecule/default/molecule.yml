@@ -1,0 +1,11 @@
+# molecule config stub
+# extends --base-config molecule/default/molecule.yml
+# required debian packages: libvirt-daemon-system vagrant vagrant-libvirt qemu qemu-utils qemu-kvm ebtables
+---
+platforms:
+  - name: instance
+    box: debian/buster64
+driver:
+  name: vagrant
+  provider:
+    name: libvirt
