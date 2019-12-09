@@ -9,6 +9,8 @@ platforms:
       # unquoted value raises exception
       # Message: NameError: undefined local variable or method `qemu' for main:Object
       driver: "'qemu'"
+      emulator_path: "'/usr/bin/qemu-system-x86_64'"
+      machine_arch: "'x86_64'"
 
 driver:
   name: vagrant
