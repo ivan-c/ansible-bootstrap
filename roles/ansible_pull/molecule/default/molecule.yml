@@ -5,6 +5,11 @@
 platforms:
   - name: instance
     box: debian/buster64
+    provider_options:
+      # unquoted value raises exception
+      # Message: NameError: undefined local variable or method `qemu' for main:Object
+      driver: "'qemu'"
+
 driver:
   name: vagrant
   provider:
