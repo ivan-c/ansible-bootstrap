@@ -16,6 +16,17 @@ jobs:
       - name: Install test runner
         run: python3 -m pip install tox
 
+      - name: install vagrant and libvirt packages
+        run: sudo apt-get update && sudo apt-get install libvirt-daemon-system vagrant vagrant-libvirt qemu qemu-utils qemu-kvm ebtables
+        env:
+          DEBIAN_FRONTEND: noninteractive
+
+      - name: Install test runner
+        run: sudo python3 -m pip install tox
+
+      - name: Run ansible_pull tests
+        run: sudo timeout 20m tox -e ansible_pull
+
       - name: Set and run tox environments
         # test every role in roles/ directory
         run: TOXENV="$(find roles/ -mindepth 1 -maxdepth 1 -type d -printf "%f," | sed 's/,$/\n/')" tox
