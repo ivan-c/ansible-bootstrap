@@ -27,6 +27,27 @@ jobs:
       - name: Run ansible_pull tests
         run: sudo timeout 20m tox -e ansible_pull
 
+      - name: Dump vagrant logs
+        if: failure()
+        run: |
+          sudo find /home/runner/.cache/molecule/ansible_pull/default -name "vagrant-instance.*" -type f -print -exec grep -v Progress: {} \;
+          sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant global-status'
+
+      - name: Dump libvirt info
+        if: failure()
+        run: |
+          sudo virsh list --all
+          sudo find /var/log/libvirt/ -type f -print -exec cat {} \;
+          sudo virsh dominfo default_instance
+
+      - name: Dump system info
+        if: failure()
+        run: |
+          sudo iptables -L -v -n
+          sudo virsh capabilities
+          sudo virsh net-list --all
+          sudo virt-host-validate || true
+
       - name: Set and run tox environments
         # test every role in roles/ directory
         run: TOXENV="$(find roles/ -mindepth 1 -maxdepth 1 -type d -printf "%f," | sed 's/,$/\n/')" tox
