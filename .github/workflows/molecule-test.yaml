@@ -46,7 +46,7 @@ jobs:
           sudo iptables -L -v -n
           sudo virsh capabilities
           sudo virsh net-list --all
-          sudo virt-host-validate || true
+          sudo sh -x -c 'virt-host-validate || true'
 
       - name: Set and run tox environments
         # test every role in roles/ directory
