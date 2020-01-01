@@ -53,6 +53,25 @@ jobs:
       - run: sudo iptables -L -v -n
         if: failure()
 
+
+      - run: sudo virt-cat -d default_instance /var/log/syslog
+        if: failure()
+      - run: sudo virt-cat -d default_instance /var/log/messages
+        if: failure()
+      - run: sudo virt-cat -d default_instance /var/log/kern.log
+        if: failure()
+      - run: sudo virt-cat -d default_instance /var/log/dpkg.log
+        if: failure()
+      - run: sudo virt-cat -d default_instance /var/log/debug
+        if: failure()
+      - run: sudo virt-cat -d default_instance /var/log/daemon.log
+        if: failure()
+      - run: sudo virt-cat -d default_instance /var/log/bootstrap.log
+        if: failure()
+      - run: sudo virt-cat -d default_instance /var/log/auth.log
+        if: failure()
+
+
       - name: Set and run tox environments
         # test every role in roles/ directory
         run: TOXENV="$(find roles/ -mindepth 1 -maxdepth 1 -type d -printf "%f," | sed 's/,$/\n/')" tox
