@@ -27,30 +27,30 @@ jobs:
       - name: Run ansible_pull tests
         run: sudo timeout 20m tox -e ansible_pull
 
+
+      - name: vagrant global-status
+        if: failure()
+        run: sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant global-status'
       - name: Dump vagrant logs
         if: failure()
         run: |
           sudo find /home/runner/.cache/molecule/ansible_pull/default -name "vagrant-instance.*" -type f -print -exec grep -v Progress: {} \;
 
-      - name: vagrant global-status
-        if: failure()
-        run: sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant global-status'
 
       - run: sudo virsh list --all
         if: failure()
-      - name: dump libvirt logs
-        run: sudo find /var/log/libvirt/ -type f -print -exec cat {} \;
+      - run: sudo virsh net-list --all
         if: failure()
       - run: sudo virsh dominfo default_instance
         if: failure()
-
       - run: virt-host-validate || true
-        if: failure()
-      - run: sudo iptables -L -v -n
         if: failure()
       - run: sudo virsh capabilities
         if: failure()
-      - run: sudo virsh net-list --all
+      - name: Dump libvirt logs
+        run: sudo find /var/log/libvirt/ -type f -print -exec cat {} \;
+        if: failure()
+      - run: sudo iptables -L -v -n
         if: failure()
 
       - name: Set and run tox environments
