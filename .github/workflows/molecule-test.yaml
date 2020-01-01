@@ -50,13 +50,13 @@ jobs:
       - name: Dump libvirt logs
         run: sudo find /var/log/libvirt/ -type f -print -exec cat {} \;
         if: failure()
+
+
       - run: sudo iptables -L -v -n
         if: failure()
 
 
       - run: sudo virt-cat -d default_instance /var/log/kern.log
-        if: failure()
-      - run: sudo virt-cat -d default_instance /var/log/dpkg.log
         if: failure()
       - run: sudo virt-cat -d default_instance /var/log/daemon.log
         if: failure()
