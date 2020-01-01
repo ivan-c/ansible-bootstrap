@@ -31,6 +31,12 @@ jobs:
       - name: vagrant global-status
         if: failure()
         run: sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant global-status'
+      - name: vagrant ssh-config instance
+        if: failure()
+        run: sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant ssh-config instance'
+      - name: vagrant ssh
+        if: failure()
+        run: sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant ssh instance -- -t "uname -a"'
       - name: Dump vagrant logs
         if: failure()
         run: |
