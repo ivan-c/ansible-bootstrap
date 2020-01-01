@@ -29,7 +29,8 @@ jobs:
 
       - name: Dump vagrant logs
         if: failure()
-        run: sudo find /home/runner/.cache/molecule/ansible_pull/default -name "vagrant-instance.*" -type f -print -exec grep -v Progress: {} \;
+        run: |
+          sudo find /home/runner/.cache/molecule/ansible_pull/default -name "vagrant-instance.*" -type f -print -exec grep -v Progress: {} \;
 
       - name: vagrant global-status
         if: failure()
