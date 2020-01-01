@@ -29,24 +29,28 @@ jobs:
 
       - name: Dump vagrant logs
         if: failure()
-        run: |
-          sudo find /home/runner/.cache/molecule/ansible_pull/default -name "vagrant-instance.*" -type f -print -exec grep -v Progress: {} \;
-          sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant global-status'
+        run: sudo find /home/runner/.cache/molecule/ansible_pull/default -name "vagrant-instance.*" -type f -print -exec grep -v Progress: {} \;
 
-      - name: Dump libvirt info
+      - name: vagrant global-status
         if: failure()
-        run: |
-          sudo virsh list --all
-          sudo find /var/log/libvirt/ -type f -print -exec cat {} \;
-          sudo virsh dominfo default_instance
+        run: sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant global-status'
 
-      - name: Dump system info
+      - run: sudo virsh list --all
         if: failure()
-        run: |
-          sudo iptables -L -v -n
-          sudo virsh capabilities
-          sudo virsh net-list --all
-          sudo sh -x -c 'virt-host-validate || true'
+      - name: dump libvirt logs
+        run: sudo find /var/log/libvirt/ -type f -print -exec cat {} \;
+        if: failure()
+      - run: sudo virsh dominfo default_instance
+        if: failure()
+
+      - run: virt-host-validate || true
+        if: failure()
+      - run: sudo iptables -L -v -n
+        if: failure()
+      - run: sudo virsh capabilities
+        if: failure()
+      - run: sudo virsh net-list --all
+        if: failure()
 
       - name: Set and run tox environments
         # test every role in roles/ directory
