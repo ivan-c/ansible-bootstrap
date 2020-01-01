@@ -54,15 +54,9 @@ jobs:
         if: failure()
 
 
-      - run: sudo virt-cat -d default_instance /var/log/syslog
-        if: failure()
-      - run: sudo virt-cat -d default_instance /var/log/messages
-        if: failure()
       - run: sudo virt-cat -d default_instance /var/log/kern.log
         if: failure()
       - run: sudo virt-cat -d default_instance /var/log/dpkg.log
-        if: failure()
-      - run: sudo virt-cat -d default_instance /var/log/debug
         if: failure()
       - run: sudo virt-cat -d default_instance /var/log/daemon.log
         if: failure()
