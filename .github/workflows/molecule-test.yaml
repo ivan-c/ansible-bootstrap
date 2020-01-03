@@ -38,7 +38,7 @@ jobs:
         if: failure()
         run: |
           sudo mkdir -p ~/.ssh/
-          sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant ssh-config instance' > ~/.ssh/config
+          sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant ssh-config instance > ~/.ssh/config'
           sudo sed -i 's|LogLevel FATAL|LogLevel INFO|g' ~/.ssh/config
           sudo ssh instance uname -a
 
