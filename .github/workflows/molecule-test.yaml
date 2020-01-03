@@ -39,6 +39,7 @@ jobs:
         run: |
           mkdir -p /home/runner/.ssh/
           sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant ssh-config instance' > /home/runner/.ssh/config
+          sed -i 's|LogLevel FATAL|LogLevel INFO|g' /home/runner/.ssh/config
           ssh instance uname -a
 
 
