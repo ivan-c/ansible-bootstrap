@@ -28,12 +28,12 @@ jobs:
         run: sudo timeout 20m tox -e ansible_pull
 
 
-      - name: vagrant global-status
+      - run: sudo vagrant global-status
         if: failure()
-        run: sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant global-status'
-      - name: vagrant ssh-config instance
+        working-directory: /home/runner/.cache/molecule/ansible_pull/default
+      - run: sudo vagrant ssh-config instance
         if: failure()
-        run: sudo sh -c 'cd /home/runner/.cache/molecule/ansible_pull/default && vagrant ssh-config instance'
+        working-directory: /home/runner/.cache/molecule/ansible_pull/default
       - name: vagrant ssh-config instance
         if: failure()
         run: |
