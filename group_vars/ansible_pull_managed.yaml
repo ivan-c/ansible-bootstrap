@@ -1,0 +1,7 @@
+---
+# set systemd Environment entries for service
+ansible_pull_service_environment:
+  HOME: /root
+  ANSIBLE_CALLBACK_PLUGINS: plugins/callback
+  ANSIBLE_CALLBACK_WHITELIST: json_oneline
+  ANSIBLE_STDOUT_CALLBACK: json_oneline
