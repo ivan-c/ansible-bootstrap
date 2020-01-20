@@ -53,3 +53,4 @@
 - hosts: laptops
   roles:
     - laptop
+    - workstation
