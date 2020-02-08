@@ -15,3 +15,4 @@
   with_items:
     - com.slack.Slack
     - us.zoom.Zoom
+    - com.getpostman.Postman
