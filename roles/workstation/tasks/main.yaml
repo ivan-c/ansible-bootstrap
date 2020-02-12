@@ -2,3 +2,11 @@
 - name: Install flatpak apps
   import_tasks: flatpak.yaml
 
+- name: Install workstation packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - chromium
+      - curl
+      - mosh
