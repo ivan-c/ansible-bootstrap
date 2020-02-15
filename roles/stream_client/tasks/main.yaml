@@ -1,3 +1,9 @@
 ---
 - name: Install flatpak apps
   import_tasks: flatpak.yaml
+
+# https://wiki.debian.org/GraphicsCard#Intel
+- name: Remove old intel display driver
+  apt:
+    name: xserver-xorg-video-intel
+    state: absent
