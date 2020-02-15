@@ -10,3 +10,4 @@
       - chromium
       - curl
       - mosh
+      - plasma-browser-integration
