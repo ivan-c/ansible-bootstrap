@@ -33,7 +33,7 @@
   post_tasks:
     - name: Use journald log driver for docker
       copy:
-        content: '{"log-driver": "journald"}'
+        content: '{"exec-opts": ["native.cgroupdriver=systemd"], "log-driver": "journald"}'
         dest: /etc/docker/daemon.json
       notify: restart docker
   handlers:
@@ -41,6 +41,29 @@
       service:
         name: docker
         state: restarted
+
+- hosts: k8s_masters
+  roles:
+    - geerlingguy.kubernetes
+  post_tasks:
+    - name: Use systemd for kubernetes cgroup driver
+      lineinfile:
+        path: /var/lib/kubelet/config.yaml
+        regexp: '^cgroupDriver:'
+        line: 'cgroupDriver: systemd'
+      notify: restart kubelet
+    - name: Remove deprecated runtime flag
+      replace:
+        path: /var/lib/kubelet/kubeadm-flags.env
+        regexp: '--cgroup-driver=systemd'
+        replace: ''
+      notify: restart kubelet
+  handlers:
+    - name: restart kubelet
+      service:
+        name: kubelet
+        state: restarted
+  tags: k8s
 
 - hosts: htpc
   roles:
