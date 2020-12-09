@@ -1,7 +1,7 @@
 ---
 - name: geerlingguy.docker
   src: https://github.com/geerlingguy/ansible-role-docker
-  version: 2.5.3
+  version: 2.9.0
 
 - name: ivan-c.sumologic
   src: https://github.com/ivan-c/ansible-role-sumologic

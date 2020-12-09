@@ -30,11 +30,6 @@
 
     # todo: fix arm64 defaults when ansible_machine == aarch64
     docker_apt_arch: '{{ "arm64" if ansible_facts["machine"] == "aarch64" else "amd64" }}'
-  pre_tasks:
-    - name: Install apt_key prerequisites
-      package:
-        name: gnupg
-        state: present
   post_tasks:
     - name: Use journald log driver for docker
       copy:
