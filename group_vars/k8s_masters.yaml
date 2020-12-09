@@ -1,0 +1,4 @@
+---
+kubernetes_role: master
+# TODO remove once nodes working
+kubernetes_allow_pods_on_master: true

@@ -1,0 +1,7 @@
+---
+kubernetes_version: '1.19'
+kubernetes_calico_manifest_file: https://docs.projectcalico.org/v3.15/manifests/calico.yaml
+kubernetes_pod_network:
+  # Calico CNI.
+  cni: 'calico'
+  cidr: '10.244.0.0/16'
