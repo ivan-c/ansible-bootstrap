@@ -42,6 +42,11 @@
         name: docker
         state: restarted
 
+- hosts: compute
+  roles:
+    - amdgpu
+    - laptop
+
 - hosts: htpc
   roles:
     - ivan-c.dell-u2713hm
