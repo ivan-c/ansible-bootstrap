@@ -30,7 +30,13 @@ import datetime
 from json import dumps
 
 from ansible.parsing.ajson import AnsibleJSONEncoder
-from ansible.plugins.callback.json import CallbackModule as JSONCallbackModule
+
+try:
+    # JSON callback moved to ansible.posix collection for ansible >= 2.10
+    from ansible_collections.ansible.posix.plugins.callback.json import CallbackModule as JSONCallbackModule
+except ImportError as error:
+    # JSON callback is bundled with ansible < 2.10
+    from ansible.plugins.callback.json import CallbackModule as JSONCallbackModule
 
 def current_time():
     return '%sZ' % datetime.datetime.utcnow().isoformat()
