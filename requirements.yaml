@@ -1,17 +1,19 @@
 ---
-- name: geerlingguy.docker
-  src: https://github.com/geerlingguy/ansible-role-docker
-  version: 2.9.0
+roles:
+  - name: geerlingguy.docker
+    src: https://github.com/geerlingguy/ansible-role-docker
+    version: 2.9.0
 
-- name: geerlingguy.kubernetes
-  src: https://github.com/geerlingguy/ansible-role-kubernetes
-  version: 5.0.1
+  - name: geerlingguy.kubernetes
+    src: https://github.com/geerlingguy/ansible-role-kubernetes
+    version: 5.0.1
 
-- name: ivan-c.sumologic
-  src: https://github.com/ivan-c/ansible-role-sumologic
+  - name: ivan-c.sumologic
+    src: https://github.com/ivan-c/ansible-role-sumologic
 
-- name: ivan-c.dell-u2713hm
-  src: https://github.com/ivan-c/ansible-role-dell-u2713hm
+  - name: ivan-c.dell-u2713hm
+    src: https://github.com/ivan-c/ansible-role-dell-u2713hm
 
-- name: ivan-c.ansible-pull
-  src: https://github.com/ivan-c/ansible-role-ansible-pull
+  - name: ivan-c.ansible-pull
+    src: https://github.com/ivan-c/ansible-role-ansible-pull
+
