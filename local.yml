@@ -42,6 +42,12 @@
         name: docker
         state: restarted
 
+- hosts: gfx
+  roles:
+    - stream_host
+    - amd_firmware
+    - laptop
+
 - hosts: htpc
   roles:
     - ivan-c.dell-u2713hm
@@ -53,3 +59,7 @@
   roles:
     - laptop
     - workstation
+
+- hosts: biostar_firmware
+  roles:
+    - biostar_firmware
