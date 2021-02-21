@@ -1,0 +1,16 @@
+---
+- name: Install flatpak
+  apt:
+    name: flatpak
+
+- name: Add the flathub flatpak repository remote
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+
+- name: Install flatpak apps
+  flatpak:
+    name: "{{ item }}"
+  with_items:
+    - com.valvesoftware.Steam
