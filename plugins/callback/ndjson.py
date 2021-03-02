@@ -53,9 +53,8 @@ class CallbackModule(JSONCallbackModule):
         hosts = sorted(stats.processed.keys())
 
         summary = {}
-        for h in hosts:
-            s = stats.summarize(h)
-            summary[h] = s
+        for host in hosts:
+            summary[host] = stats.summarize(host)
 
         custom_stats = {}
         global_custom_stats = {}
