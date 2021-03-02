@@ -16,9 +16,15 @@
 - name: Flush all notified handlers
   meta: flush_handlers
 
-- name: Install required firmware
+# Wake-on-LAN requires the following BIOS settings:
+# EuP Control must be disabled
+# PME Wake up from S5 must be enabled
+- name: Install firmware and driver necessary for Wake-on-LAN
   apt:
     name: "{{ packages }}"
   vars:
     packages:
       - firmware-realtek
+      - "{{ kernel_headers_package }}"
+      # TODO dynamically load r8168 only before poweroff (use r8169 otherwise)
+      - r8168-dkms

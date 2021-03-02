@@ -1,0 +1,2 @@
+---
+kernel_headers_package: "linux-headers-{{ ansible_kernel }}"
