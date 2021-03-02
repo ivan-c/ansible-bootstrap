@@ -4,11 +4,11 @@
 
 
 DOCUMENTATION = '''
-    callback: json_oneline
-    short_description: Ansible screen output as single-line JSON
+    callback: ndjson
+    short_description: Ansible console output as newline-delimited JSON
     version_added: "2.2"
     description:
-        - This callback converts all events into JSON output to stdout, in a single line
+        - This callback converts all events into newline-delimited JSON, output to stdout
     type: stdout
     requirements:
       - Set as stdout in config
@@ -44,7 +44,7 @@ def current_time():
 class CallbackModule(JSONCallbackModule):
     CALLBACK_VERSION = 2.0
     CALLBACK_TYPE = 'stdout'
-    CALLBACK_NAME = 'json_oneline'
+    CALLBACK_NAME = 'ndjson'
 
 
     def v2_playbook_on_stats(self, stats):
