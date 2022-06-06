@@ -22,11 +22,9 @@
   roles:
     - geerlingguy.docker
 
-  # manually set distribution_major_version
-  # workaround for debian buster (testing) bug
-  # https://github.com/ansible/ansible/issues/19874#issuecomment-436542563
+  # manually set distribution_major_version, until debian bookworm support available
   vars:
-    ansible_distribution_release: '{{ "buster" if ansible_facts["distribution_major_version"] == "buster/sid" else ansible_facts["distribution_release"] }}'
+    ansible_distribution_release: '{{ "bullseye" if ansible_facts["distribution_major_version"] == "bookworm" else ansible_facts["distribution_release"] }}'
 
     # todo: fix arm64 defaults when ansible_machine == aarch64
     docker_apt_arch: '{{ "arm64" if ansible_facts["machine"] == "aarch64" else "amd64" }}'
