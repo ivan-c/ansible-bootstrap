@@ -1,10 +1,10 @@
 ---
 - name: Install required packages
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
   vars:
     packages:
       - nfs-common
 
 - name: Install flatpak apps
-  import_tasks: flatpak.yaml
+  ansible.builtin.import_tasks: flatpak.yaml

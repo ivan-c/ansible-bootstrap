@@ -3,3 +3,7 @@ extends: default
 rules:
   line-length: disable
   truthy: disable
+
+  # important only for multi-document files
+  # https://yaml.org/spec/1.2.2#22-structures
+  document-start: disable

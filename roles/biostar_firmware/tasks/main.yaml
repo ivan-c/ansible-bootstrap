@@ -1,26 +1,26 @@
 ---
 - name: Install required packages
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
   vars:
     packages:
       - software-properties-common
 
 - name: Add non-free sources
-  command: apt-add-repository non-free
+  ansible.builtin.command: apt-add-repository non-free
   register: add_component_result
   notify:
     - Update package lists
   changed_when: '"component enabled" in add_component_result.stdout'
 
 - name: Flush all notified handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 # Wake-on-LAN requires the following BIOS settings:
 # EuP Control must be disabled
 # PME Wake up from S5 must be enabled
 - name: Install firmware and driver necessary for Wake-on-LAN
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
   vars:
     packages:

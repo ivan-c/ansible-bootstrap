@@ -1,11 +1,12 @@
 # Playbook to bootstrap k8s cluster
 # ansible-playbook --user root --inventory k8s_hosts.ini --extra-vars ansible_python_interpreter=python3 ./k8s_boostrap.yaml
 ---
-- hosts:
+- name: Install k8s role
+  hosts:
     - k8s
   roles:
     - geerlingguy.kubernetes
   pre_tasks:
     # TODO fixup apt preference for default release
-    - name: Update apt cache
-      command: apt update
+    - name: Update apt cache  # noqa no-changed-when
+      ansible.builtin.command: apt update

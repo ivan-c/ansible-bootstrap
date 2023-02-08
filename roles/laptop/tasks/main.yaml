@@ -1,6 +1,6 @@
 ---
 - name: Install laptop packages
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
   vars:
     packages:

@@ -1,23 +1,23 @@
 ---
 - name: Install required packages
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
   vars:
     packages:
       - software-properties-common
 
 - name: Add non-free sources
-  command: apt-add-repository non-free
+  ansible.builtin.command: apt-add-repository non-free
   register: add_component_result
   notify:
     - Update package lists
   changed_when: '"component enabled" in add_component_result.stdout'
 
 - name: Flush all notified handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Install required firmware
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
   vars:
     packages:

@@ -1,9 +1,9 @@
 ---
 - name: Install flatpak apps
-  import_tasks: flatpak.yaml
+  ansible.builtin.import_tasks: flatpak.yaml
 
 - name: Install workstation packages
-  apt:
+  ansible.builtin.apt:
     name: "{{ packages }}"
   vars:
     packages:

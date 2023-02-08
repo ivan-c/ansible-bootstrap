@@ -1,24 +1,29 @@
 # Run this playbook corresponding with `local` group of hosts
 ---
-- hosts: all
+- name: Install base roles
+  hosts: all
   roles:
     - base
   tags: boot
 
-- hosts: ansible_pull_managed
+- name: Install ansible-pull wrapper for managed hosts
+  hosts: ansible_pull_managed
   roles:
     - ivan-c.ansible-pull
   tags: boot
 
-- hosts: headless_hosts
+- name: Install roles for headless hosts
+  hosts: headless_hosts
   tasks:
-    - include_role:
+    - name: Install remote logging role, if secrets configured
+      ansible.builtin.include_role:
         name: ivan-c.sumologic
       # skip if ansible-secrets repo absent
-      when: lookup('file','/etc/opt/ansible-secrets/README.md', errors='ignore')
+      when: lookup('file', '/etc/opt/ansible-secrets/README.md', errors='ignore')
   tags: boot
 
-- hosts: docker_hosts
+- name: Install docker role
+  hosts: docker_hosts
   roles:
     - geerlingguy.docker
 
@@ -30,34 +35,41 @@
     docker_apt_arch: '{{ "arm64" if ansible_facts["machine"] == "aarch64" else "amd64" }}'
   post_tasks:
     - name: Use journald log driver for docker
-      copy:
+      ansible.builtin.copy:
         content: '{"log-driver": "journald"}'
         dest: /etc/docker/daemon.json
-      notify: restart docker
+        owner: root
+        group: root
+        mode: 0755
+      notify: Restart docker
   handlers:
-    - name: restart docker
-      service:
+    - name: Restart docker
+      ansible.builtin.service:
         name: docker
         state: restarted
 
-- hosts: gfx
+- name: Install roles for gfx hosts
+  hosts: gfx
   roles:
     - stream_host
     - amd_firmware
     - laptop
 
-- hosts: htpc
+- name: Install roles for htpc hosts
+  hosts: htpc
   roles:
     - ivan-c.dell-u2713hm
     - hp_firmware
     - workstation
     - stream_client
 
-- hosts: laptops
+- name: Install roles for laptop hosts
+  hosts: laptops
   roles:
     - laptop
     - workstation
 
-- hosts: biostar_firmware
+- name: Install roles for biostar hosts
+  hosts: biostar_firmware
   roles:
     - biostar_firmware
