@@ -58,7 +58,6 @@
 - name: Install roles for htpc hosts
   hosts: htpc
   roles:
-    - ivan-c.dell-u2713hm
     - hp_firmware
     - workstation
     - stream_client
