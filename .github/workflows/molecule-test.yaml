@@ -19,8 +19,3 @@ jobs:
       - name: Set and run tox environments
         # test every role in roles/ directory
         run: TOXENV="$(find roles/ -mindepth 1 -maxdepth 1 -type d -printf "%f," | sed 's/,$/\n/')" tox
-        env:
-          # skip failing roles
-          TOX_SKIP_ENV: ansible_pull
-        # TODO remove when molecule tests fixed
-        continue-on-error: true
