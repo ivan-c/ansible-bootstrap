@@ -5,8 +5,8 @@ driver:
   name: docker
 platforms:
   - name: instance
-    # TODO pin to current debian stable
-    image: python:3
+    # pin to current debian stable
+    image: python:3-bullseye
     pre_build_image: true
 provisioner:
   name: ansible
