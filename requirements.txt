@@ -1,7 +1,7 @@
-molecule[docker]==3.3.4
-# earlier versions of molecule (<3.5.1) depend on ansiblelint.prerun
-# ansiblelint.prerun removed from ansible-lint in 6.0.0
-ansible-lint<6.0.0
+molecule[docker]==4.0.4
+
+# ansible-compat 3.0 requires ansible 2.11
+ansible-compat<3.0
 
 # track debian stable version of ansible (roughly)
 # https://packages.debian.org/bullseye/ansible

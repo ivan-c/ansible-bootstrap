@@ -10,3 +10,8 @@ platforms:
     pre_build_image: true
 provisioner:
   name: ansible
+  config_options:
+    defaults:
+      # TODO remove after upgrading from ansible 2.10
+      # silence version warnings from community.docker collection built into molecule
+      collections_on_ansible_version_mismatch: ignore
