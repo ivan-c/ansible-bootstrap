@@ -8,4 +8,4 @@ ansible-compat<3.0
 
 # track debian stable version of ansible (roughly)
 # https://packages.debian.org/bullseye/ansible
-ansible==2.10.7
+ansible==7.0.0
