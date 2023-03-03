@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  pre_tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      become: yes
+  roles:
+    # dynamically set role name from role directory name
+    - role: "{{ lookup('env','MOLECULE_PROJECT_DIRECTORY').split('/')[-1] }}"
+      become: yes

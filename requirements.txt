@@ -1,5 +1,8 @@
 molecule[docker]==4.0.4
 
+molecule-plugins[vagrant]==v23.0.0
+python-vagrant==1.0.0
+
 # ansible-compat 3.0 requires ansible 2.11
 ansible-compat<3.0
 
