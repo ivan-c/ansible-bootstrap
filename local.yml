@@ -48,27 +48,33 @@
         name: docker
         state: restarted
 
+
 - name: Install roles for gfx hosts
-  hosts: gfx
+  hosts: stream_host
   roles:
     - stream_host
-    - amd_firmware
-    - laptop
 
-- name: Install roles for htpc hosts
-  hosts: htpc
+- name: Install roles for GUI hosts
+  hosts: gui
   roles:
-    - hp_firmware
-    - workstation
-    - stream_client
+    - gui
 
-- name: Install roles for laptop hosts
-  hosts: laptops
+- name: Install roles for work
+  hosts: work
   roles:
-    - laptop
-    - workstation
+    - work
 
 - name: Install roles for biostar hosts
   hosts: biostar_firmware
   roles:
     - biostar_firmware
+
+- name: Install roles for HP hosts
+  hosts: hp_firmware
+  roles:
+    - hp_firmware
+
+- name: Install roles for AMD hosts
+  hosts: amd_firmware
+  roles:
+    - amd_firmware
