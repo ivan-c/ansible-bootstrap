@@ -12,8 +12,8 @@
     - ivan-c.ansible-pull
   tags: boot
 
-- name: Install roles for headless hosts
-  hosts: headless_hosts
+- name: Install roles for collecting remote logs
+  hosts: log_collection
   tasks:
     - name: Install remote logging role, if secrets configured
       ansible.builtin.include_role:
