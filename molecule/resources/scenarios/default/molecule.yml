@@ -1,5 +1,6 @@
 # global molecule config
-# set MOLECULE_GLOB environment variable to full path of this file
+# to use this file as-is, set MOLECULE_GLOB environment variable to full path of this file
+# to extend this file, pass `--base-config molecule/resources/scenarios/default/molecule.yml` to `molecule`
 ---
 driver:
   name: docker
@@ -15,3 +16,6 @@ provisioner:
       # TODO remove after upgrading from ansible 2.10
       # silence version warnings from community.docker collection built into molecule
       collections_on_ansible_version_mismatch: ignore
+
+  playbooks:
+    converge: ../../playbooks/converge.yml

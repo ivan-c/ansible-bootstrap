@@ -1,5 +1,5 @@
 # molecule config stub
-# extends --base-config molecule/default/molecule.yml
+# extends --base-config molecule/resources/scenarios/default/molecule.yml
 ---
 driver:
   name: vagrant
@@ -11,3 +11,7 @@ platforms:
   - name: bullseye
     # pin to current debian stable
     box: debian/bullseye64
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ./converge.yml

@@ -1,5 +1,5 @@
 # molecule config stub
-# extends --base-config molecule/default/molecule.yml
+# extends --base-config molecule/resources/scenarios/default/molecule.yml
 ---
 platforms:
   - name: instance
