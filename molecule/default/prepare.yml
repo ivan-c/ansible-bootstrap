@@ -1,0 +1,45 @@
+---
+- name: Allow ssh as root
+  hosts: all
+  become: true
+  tasks:
+    - name: Create root ssh config folder
+      ansible.builtin.file:
+        path: /root/.ssh/
+        state: directory
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Copy vagrant authorized keys to root account
+      ansible.builtin.copy:
+        remote_src: true
+        src: /home/vagrant/.ssh/authorized_keys
+        dest: /root/.ssh/authorized_keys
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Allow ssh root logins
+      ansible.builtin.lineinfile:
+        dest: /etc/ssh/sshd_config
+        regexp: ^PermitRootLogin
+        line: PermitRootLogin without-password
+        state: present
+      notify:
+        - Restart ssh
+  handlers:
+    - name: Restart ssh
+      ansible.builtin.service:
+        name: sshd
+        state: restarted
+
+- name: Update package cache
+  hosts: all
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 600
+      when: ansible_os_family == 'Debian'
+      become: true

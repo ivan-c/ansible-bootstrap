@@ -1,0 +1,5 @@
+---
+- name: Run top-level playbook
+  ansible.builtin.import_playbook: ../../local.yml
+  vars:
+    ansible_user: root

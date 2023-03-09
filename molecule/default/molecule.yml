@@ -1,0 +1,25 @@
+---
+driver:
+  name: vagrant
+  provider:
+    name: libvirt
+  provision: true
+platforms:
+  - name: bullseye
+    # pin to current debian stable
+    box: debian/bullseye64
+    groups:
+      # groups corresponding with external roles, not in the monorepo
+      - docker_hosts
+
+dependency:
+  name: galaxy
+  options:
+    # `molecule` invokes `ansible-galaxy` in the same directory it's invoked in (ie not in molecule/default/)
+    role-file: requirements.yaml
+
+provisioner:
+  name: ansible
+  playbooks:
+    prepare: ./prepare.yml
+    converge: ./converge.yml

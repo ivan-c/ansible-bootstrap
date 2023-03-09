@@ -9,6 +9,9 @@ platforms:
     # pin to current debian stable
     image: python:3-bullseye
     pre_build_image: true
+    groups:
+      # groups corresponding with external roles, not in the monorepo
+      - docker_hosts
 provisioner:
   name: ansible
   config_options:
