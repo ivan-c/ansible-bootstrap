@@ -14,6 +14,9 @@ jobs:
         with:
           python-version: 3.x
 
+      - name: Update package metadata
+        run:  sudo apt-get update
+
       - name: Install vagrant and libvirt packages
         run:
           sudo apt-get install --no-install-recommends
