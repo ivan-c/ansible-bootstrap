@@ -9,7 +9,7 @@
 - name: Install ansible-pull wrapper for managed hosts
   hosts: ansible_pull_managed
   roles:
-    - ivan-c.ansible-pull
+    - ivan_c.ansible_pull
   tags: boot
 
 - name: Install roles for collecting remote logs

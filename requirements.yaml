@@ -11,7 +11,7 @@ roles:
   - name: ivan-c.sumologic
     src: https://github.com/ivan-c/ansible-role-sumologic
 
-  - name: ivan-c.ansible-pull
+  - name: ivan_c.ansible_pull
     src: https://github.com/ivan-c/ansible-role-ansible-pull
 
 collections:
