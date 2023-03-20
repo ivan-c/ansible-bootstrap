@@ -1,0 +1,3 @@
+# https://ansible-lint.readthedocs.io/configuring/
+---
+strict: true
