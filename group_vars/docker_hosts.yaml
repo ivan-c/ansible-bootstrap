@@ -1,0 +1,12 @@
+---
+# use debian-maintained docker package instead of Docker Inc. Community Edition (`docker-ce`) packages
+docker_packages:
+  - docker.io
+
+# do not configure Docker Inc. apt repos
+docker_add_repo: false
+
+docker_daemon_options:
+  # use journald to persist container logs
+  # https://docs.docker.com/config/containers/logging/journald/
+  log-driver: journald

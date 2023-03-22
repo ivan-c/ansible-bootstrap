@@ -27,28 +27,6 @@
   roles:
     - geerlingguy.docker
 
-  # manually set distribution_major_version, until debian bookworm support available
-  vars:
-    ansible_distribution_release: '{{ "bullseye" if ansible_facts["distribution_release"] == "bookworm" else ansible_facts["distribution_release"] }}'
-
-    # todo: fix arm64 defaults when ansible_machine == aarch64
-    docker_apt_arch: '{{ "arm64" if ansible_facts["machine"] == "aarch64" else "amd64" }}'
-  post_tasks:
-    - name: Use journald log driver for docker
-      ansible.builtin.copy:
-        content: '{"log-driver": "journald"}'
-        dest: /etc/docker/daemon.json
-        owner: root
-        group: root
-        mode: 0755
-      notify: Restart docker
-  handlers:
-    - name: Restart docker
-      ansible.builtin.service:
-        name: docker
-        state: restarted
-
-
 - name: Install roles for gfx hosts
   hosts: stream_host
   roles:
