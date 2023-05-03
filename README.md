@@ -1,25 +1,22 @@
-ansible-bootstrap
-=================
-Infrastructure managed via ansible pull-mode
+# ansible-bootstrap
+Personal Infrastructure managed via ansible
 
-Enable Ansible Management
--------------------------
-To manage a host via ansible-pull follow the below steps
+# Setup
+## Enable Ansible Management
+To manage a new host, add its hostname to any relevant groups in `hosts.ini`
 
-Download and run [this script](https://gist.github.com/ivan-c/35768f1ee268ce0a581f412bffa8a3dc) to install the latest version of ansible and its dependencies
+### Enable Persistent Management
+To enable persistent management (via ansible-pull), add the new host to the `ansible_pull_managed` group
 
-    wget \
-        --output-document /tmp/bootstrap-ansible.sh \
-    https://gist.githubusercontent.com/ivan-c/35768f1ee268ce0a581f412bffa8a3dc/raw/bootstrap-ansible.sh
-    chmod +x /tmp/bootstrap-ansible.sh
+# Running
+First, run any steps in [Setup](#Setup) as necessary
 
-    /tmp/bootstrap-ansible.sh
+## Pull
+To run ansible in pull-mode, invoke ansible-pull on the desired host:
 
-Download and run [this wrapper for ansible-pull](https://github.com/ivan-c/ansible-role-ansible-pull/blob/master/files/ansible_pull_wrapper.sh), substituting `$REPO_URL` with the desired playbook URL
+    ansible-pull --url https://github.com/ivan-c/ansible-bootstrap
 
-    wget \
-        --output-document /usr/bin/ansible_pull_wrapper.sh \
-    https://raw.githubusercontent.com/ivan-c/ansible-role-ansible-pull/master/files/ansible_pull_wrapper.sh
-    chmod +x /usr/bin/ansible_pull_wrapper.sh
+## Push
+To connect and run ansible on a remote host, invoke ansible as follows:
 
-    ansible_pull_wrapper.sh --tags boot --url $REPO_URL
+    ansible-playbook --limit $HOST local.yml
