@@ -5,6 +5,7 @@
   vars:
     packages:
       - nfs-common
+      - steam-devices
 
 - name: Install flatpak apps
   community.general.flatpak:
