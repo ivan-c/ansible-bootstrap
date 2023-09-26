@@ -1,0 +1,11 @@
+- name: Install ZFS packages and utils
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      # ZFS packages
+      - linux-headers-amd64
+      - zfs-dkms
+      - zfsutils-linux
+      # utilities
+      - sanoid

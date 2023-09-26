@@ -32,6 +32,11 @@
   roles:
     - stream_host
 
+- name: Install roles for SAN hosts
+  hosts: san
+  roles:
+    - san
+
 - name: Install roles for GUI hosts
   hosts: gui
   roles:
