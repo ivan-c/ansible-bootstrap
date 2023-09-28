@@ -1,6 +1,5 @@
 ---
-- name: Converge
-  hosts: all
-  roles:
-    # dynamically set role name from role directory name
-    - role: "{{ lookup('env','MOLECULE_PROJECT_DIRECTORY').split('/')[-1] }}"
+- name: Run top-level playbook
+  ansible.builtin.import_playbook: ../../../local.yml
+  vars:
+    ansible_user: root

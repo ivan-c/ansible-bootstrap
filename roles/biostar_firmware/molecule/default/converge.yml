@@ -1,8 +1,0 @@
----
-- name: Converge
-  hosts: all
-  vars:
-    kernel_headers_package: linux-headers-amd64
-  roles:
-    # dynamically set role name from role directory name
-    - role: "{{ lookup('env','MOLECULE_PROJECT_DIRECTORY').split('/')[-1] }}"

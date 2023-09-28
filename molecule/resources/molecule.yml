@@ -9,9 +9,11 @@ platforms:
     # pin to current debian stable
     image: python:3-bullseye
     pre_build_image: true
-    groups:
-      # groups corresponding with external roles, not in the monorepo
-      - docker_hosts
+dependency:
+  name: galaxy
+  options:
+    # `molecule` invokes `ansible-galaxy` in the same directory it's invoked in (ie not in molecule/default/)
+    role-file: requirements.yaml
 provisioner:
   name: ansible
   config_options:
@@ -21,4 +23,4 @@ provisioner:
       collections_on_ansible_version_mismatch: ignore
 
   playbooks:
-    converge: ../../playbooks/converge.yml
+    converge: ../../molecule/resources/playbooks/converge.yml
