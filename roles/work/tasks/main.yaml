@@ -1,3 +1,9 @@
 ---
 - name: Install flatpak apps
-  ansible.builtin.import_tasks: flatpak.yaml
+  community.general.flatpak:
+    name: "{{ item }}"
+  with_items:
+    - com.getpostman.Postman
+    - com.slack.Slack
+    - us.zoom.Zoom
+    - com.microsoft.Teams

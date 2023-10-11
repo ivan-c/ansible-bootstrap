@@ -1,3 +1,5 @@
 # https://ansible-lint.readthedocs.io/configuring/
 ---
 strict: true
+skip_list:
+  - meta-no-info

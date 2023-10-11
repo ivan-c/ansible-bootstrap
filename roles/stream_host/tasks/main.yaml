@@ -7,4 +7,8 @@
       - nfs-common
 
 - name: Install flatpak apps
-  ansible.builtin.import_tasks: flatpak.yaml
+  community.general.flatpak:
+    name: "{{ item }}"
+  with_items:
+    - com.valvesoftware.Steam
+    - org.DolphinEmu.dolphin-emu

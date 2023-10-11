@@ -8,12 +8,3 @@
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-
-- name: Install flatpak apps
-  community.general.flatpak:
-    name: "{{ item }}"
-  with_items:
-    - com.getpostman.Postman
-    - com.slack.Slack
-    - us.zoom.Zoom
-    - com.microsoft.Teams
