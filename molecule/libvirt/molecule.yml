@@ -8,6 +8,8 @@ platforms:
   - name: bullseye
     # pin to current debian stable
     box: debian/bullseye64
+    # installing Zoom flatpak requires more than 512 MB memory
+    memory: 1024
     groups:
       - ansible_pull_managed
       # TODO enable after able to add component idempotently
