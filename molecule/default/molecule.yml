@@ -9,6 +9,7 @@ platforms:
     groups:
       - amd_firmware
       - log_collection
-      - stream_host
+      # TODO re-enable once updated to bookworm
+      # - stream_host
       - gui
       - hp_firmware
