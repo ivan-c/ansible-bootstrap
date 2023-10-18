@@ -2,14 +2,12 @@
 driver:
   name: docker
 platforms:
-  - name: bullseye
+  - name: bookworm
     # pin to current debian stable
-    image: python:3-bullseye
-    pre_build_image: true
+    image: python:3-bookworm
     groups:
       - amd_firmware
       - log_collection
-      # TODO re-enable once updated to bookworm
-      # - stream_host
+      - stream_host
       - gui
       - hp_firmware

@@ -1,0 +1,8 @@
+# TODO remove when more tools have deb822 support
+# replace deb822-formatted sources file with one-line version
+FROM {{ item.image }}
+
+RUN echo \
+'deb http://deb.debian.org/debian bookworm main\ndeb http://deb.debian.org/debian-security bookworm-security main\ndeb http://deb.debian.org/debian bookworm-updates main' > /etc/apt/sources.list
+
+RUN rm /etc/apt/sources.list.d/debian.sources

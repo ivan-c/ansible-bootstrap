@@ -6,8 +6,8 @@
     packages:
       - software-properties-common
 
-- name: Add non-free sources
-  ansible.builtin.command: apt-add-repository non-free
+- name: Add non-free-firmware sources
+  ansible.builtin.command: apt-add-repository --yes non-free-firmware
   register: add_component_result
   notify:
     - Update package lists

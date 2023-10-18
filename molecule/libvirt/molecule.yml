@@ -5,11 +5,11 @@ driver:
     name: libvirt
   provision: true
 platforms:
-  - name: bullseye
+  - name: bookworm
     # pin to current debian stable
-    box: debian/bullseye64
     # installing Zoom flatpak requires more than 512 MB memory
     memory: 1024
+    box: debian/bookworm64
     groups:
       - ansible_pull_managed
       # TODO enable after able to add component idempotently

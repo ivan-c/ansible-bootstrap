@@ -1,0 +1,12 @@
+# molecule config stub
+# extends --base-config molecule/resources/scenarios/default/molecule.yml
+---
+platforms:
+  - name: instance
+    # pin to current debian stable
+    image: python:3-bookworm
+    pre_build_image: true
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ./converge.yml

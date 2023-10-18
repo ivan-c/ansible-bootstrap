@@ -7,7 +7,7 @@ driver:
 platforms:
   - name: instance
     # pin to current debian stable
-    image: python:3-bullseye
+    image: python:3-bookworm
     pre_build_image: true
 dependency:
   name: galaxy
