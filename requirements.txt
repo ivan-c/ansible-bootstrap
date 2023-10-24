@@ -1,11 +1,7 @@
-molecule[docker]==4.0.4
+# TODO upgrade to v6 once Issue resolved
+# https://github.com/ansible/molecule/issues/4015#issuecomment-1680859724
+molecule==5.1.0
+molecule-plugins[docker,vagrant]==23.5.0
 
-molecule-plugins[vagrant]==v23.0.0
-python-vagrant==1.0.0
-
-# ansible-compat 3.0 requires ansible 2.11
-ansible-compat<3.0
-
-# track debian stable version of ansible (roughly)
-# https://packages.debian.org/bullseye/ansible
-ansible==2.10.7
+# track debian testing version of ansible (roughly)
+ansible==7.7.0
