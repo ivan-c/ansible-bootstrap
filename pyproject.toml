@@ -1,0 +1,18 @@
+[project]
+name = "ansible-bootstrap"
+requires-python = "==3.*"
+# track debian testing version of ansible (roughly)
+dependencies = ["ansible==7.7.0"]
+
+[project.optional-dependencies]
+dev = [
+    "molecule==5.1.0",
+    "molecule-plugins[docker,vagrant]==23.5.0",
+]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = []

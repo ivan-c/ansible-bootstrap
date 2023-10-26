@@ -1,7 +1,0 @@
-# TODO upgrade to v6 once Issue resolved
-# https://github.com/ansible/molecule/issues/4015#issuecomment-1680859724
-molecule==5.1.0
-molecule-plugins[docker,vagrant]==23.5.0
-
-# track debian testing version of ansible (roughly)
-ansible==7.7.0
