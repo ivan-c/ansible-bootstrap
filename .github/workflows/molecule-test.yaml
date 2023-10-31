@@ -12,7 +12,8 @@ jobs:
       - name: Set up Python 3
         uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          # track debian testing version of python (roughly)
+          python-version: 3.11
 
       - name: Update package metadata
         run:  sudo apt-get update
