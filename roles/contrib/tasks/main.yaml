@@ -1,0 +1,14 @@
+---
+- name: Install required packages
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - software-properties-common
+
+- name: Add contrib sources
+  ansible.builtin.command: apt-add-repository --yes contrib
+  register: add_component_result
+  notify:
+    - Update package lists
+  changed_when: '"component enabled" in add_component_result.stdout'
