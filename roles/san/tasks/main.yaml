@@ -9,3 +9,4 @@
       - zfsutils-linux
       # utilities
       - sanoid
+      - smartmontools
